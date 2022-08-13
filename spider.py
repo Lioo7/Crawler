@@ -4,6 +4,16 @@ from link_finder import LinkFinder
 from general import *
 
 
+# the function returns the domain name of the given url
+def find_domain_in_url(url):
+    # gets a list of the subdomain name
+    results = url.split('.')
+    if len(results) > 1:
+        return results[1]
+    else:
+        return results[0]
+
+
 class Spider:
     # class variables (shared among all instances)
     project_name = ''
@@ -24,9 +34,9 @@ class Spider:
         Spider.domain_name = domain_name
         Spider.queue_file = Spider.project_name + '/queue.txt'
         Spider.crawled_file = Spider.project_name + '/crawled.txt'
-        print('boot')
+        # print('*boot*')
         self.boot()
-        print('crawl_page')
+        # print('*crawl_page*')
         self.crawl_page('First spider', Spider.base_url)
 
     @staticmethod
@@ -41,9 +51,9 @@ class Spider:
         # checks if any spider did not already crawl this page
         if page_url not in Spider.crawled:
             print(thread_name + ' is now crawling ' + page_url)
-            print('Queue ' + str(len(Spider.queue)) + ' | Crawled ' + str(len(Spider.queue)))
+            print('Queue ' + str(len(Spider.queue)) + ' | Crawled ' + str(len(Spider.crawled)))
             Spider.add_links_to_queue(Spider.gather_links(page_url))
-            # remove the uel from the queue and add it to the crawled
+            # remove the url from the queue and add it to the crawled
             Spider.queue.remove(page_url)
             Spider.crawled.add(page_url)
             # converts the sets to files to save the data
@@ -77,12 +87,12 @@ class Spider:
     # the function gets a set of links and adds it to an existing waiting list
     @staticmethod
     def add_links_to_queue(links):
-        # the condition of domain name in url assure that the spider will
+        # the condition of domain name == find_domain_in_url, assure that the spider will
         # add only links from our website
-        for url in links:
-            if url not in Spider.queue and url not in Spider.crawled \
-                    and Spider.domain_name in url:
-                Spider.queue.add(url)
+        for link in links:
+            if link not in Spider.queue and link not in Spider.crawled \
+                    and Spider.domain_name in find_domain_in_url(link):
+                Spider.queue.add(link)
 
     # The function saves the data to files
     @staticmethod

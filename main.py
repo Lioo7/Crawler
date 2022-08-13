@@ -11,17 +11,6 @@ The spiders will continue crawling as long as there are items in the queue.
 """
 
 
-# PROJECT_NAME = 'coursera'
-# HOME_PAGE = 'https://www.coursera.org/'
-# DOMAIN_NAIM = get_domain_name(HOME_PAGE)
-# QUEUE_FILE = PROJECT_NAME + '/queue.txt'
-# CRAWLED_FILE = PROJECT_NAME + '/crawled.txt'
-# NUMBER_OF_THREADS = 8
-# threads_queue = Queue()
-# # calls the first spider on the home page
-# Spider(PROJECT_NAME, HOME_PAGE, DOMAIN_NAIM)
-
-
 # create spider (worker) threads (will die when main exits)
 def create_spiders():
     for _ in range(NUMBER_OF_THREADS):
@@ -58,12 +47,15 @@ def crawl():
     if len(queued_links) > 0:
         print(str(len(queued_links)) + ' links in the queue')
         create_jobs()
+    else:
+        print('Done')
 
 
 if __name__ == '__main__':
     PROJECT_NAME = input('Enter the project name: ')
     HOME_PAGE = input('Enter the URL: ')
     DOMAIN_NAIM = get_domain_name(HOME_PAGE)
+    print("DOMAIN_NAIM: " + DOMAIN_NAIM)
     QUEUE_FILE = PROJECT_NAME + '/queue.txt'
     CRAWLED_FILE = PROJECT_NAME + '/crawled.txt'
     NUMBER_OF_THREADS = 8
@@ -72,7 +64,6 @@ if __name__ == '__main__':
     # calls the first spider on the home page
     print('Creating Spider #1')
     Spider(PROJECT_NAME, HOME_PAGE, DOMAIN_NAIM)
-
     # creates our spiders
     print('Create_spiders')
     create_spiders()
