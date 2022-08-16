@@ -54,8 +54,8 @@ def crawl():
 if __name__ == '__main__':
     PROJECT_NAME = input('Enter the project name: ')
     HOME_PAGE = input('Enter the URL: ')
-    DOMAIN_NAIM = get_domain_name(HOME_PAGE)
-    print("DOMAIN_NAIM: " + DOMAIN_NAIM)
+    DOMAIN_NAME = get_domain_name(HOME_PAGE)
+    print("DOMAIN_NAME: " + DOMAIN_NAME)
     QUEUE_FILE = PROJECT_NAME + '/queue.txt'
     CRAWLED_FILE = PROJECT_NAME + '/crawled.txt'
     NUMBER_OF_THREADS = 8
@@ -63,10 +63,8 @@ if __name__ == '__main__':
     print('Start crawling...')
     # calls the first spider on the home page
     print('Creating Spider #1')
-    Spider(PROJECT_NAME, HOME_PAGE, DOMAIN_NAIM)
-    # creates our spiders
+    Spider(PROJECT_NAME, HOME_PAGE, DOMAIN_NAME)
     print('Create_spiders')
     create_spiders()
-    # creates our jobs (links to crawl)
     print('Creates jobs (links to crawl)')
     crawl()
