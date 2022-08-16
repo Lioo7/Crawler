@@ -9,6 +9,6 @@ Multi-threaded Python website crawler that generates a file with all the domesti
 4. Wait for the spiders to finish crawling.
 5. You can view all URLs in the crawled.txt file.
 
-![alt text](https://i.postimg.cc/65Z7wdhH/Screen-Shot-2022-08-16-at-14-18-18.png)
+![alt text](https://i.postimg.cc/yN7WmxZs/Screen-Shot-2022-08-16-at-14-36-56.png)
 
 ![alt text](https://i.postimg.cc/8zV7CjKT/Screen-Shot-2022-08-16-at-14-20-17.png)
